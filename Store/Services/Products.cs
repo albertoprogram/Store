@@ -21,12 +21,13 @@ namespace Store.Services
             }
         }
 
-        public void InsertProduct(string productName, string price)
+        public void InsertProduct(string productName, string price, out int id)
         {
+            id = 0;
+
             if (connectionString == null) { return; }
 
-            decimal priceDecimal = decimal.Parse(price,CultureInfo.InvariantCulture);
-            int id;
+            decimal priceDecimal = decimal.Parse(price, CultureInfo.InvariantCulture);
 
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {

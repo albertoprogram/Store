@@ -41,8 +41,21 @@ namespace Store.Forms
         private void btnCreateProduct_Click(object sender, EventArgs e)
         {
             Products products = new Products();
+            int id = 0;
 
-            products.InsertProduct(txtProductName.Text,txtPrice.Text);
+            try
+            {
+                products.InsertProduct(txtProductName.Text, txtPrice.Text, out id);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message + " " + exception.StackTrace);
+            }
+
+            if (id > 0)
+            {
+                MessageBox.Show($"Ok! Product Id: {id}");
+            }
         }
     }
 }
